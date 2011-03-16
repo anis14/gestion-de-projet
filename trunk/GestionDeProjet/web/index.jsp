@@ -11,9 +11,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Accueil Gestion de projet</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Accueil Gestion de projet</h1>
+		<a href="GestionProjetServlet?action=rechercherProjet">Rechercher un projet</a><br />
+		<a href="projet/vueCreerProjet.jsp">Cr&eacute;er un projet</a>
     </body>
 </html>

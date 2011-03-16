@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path=""/>
+<Context antiJARLocking="true" path="/">
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver"
+  logAbandoned="true" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/gp"
+  password="vlevache" removeAbandoned="true" removeAbandonedTimeout="60"
+  type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/gp" username="vlevache"/>
+</Context>

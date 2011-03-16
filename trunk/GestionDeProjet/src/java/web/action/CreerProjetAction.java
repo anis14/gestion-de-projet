@@ -5,9 +5,16 @@
 
 package web.action;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author vincent
  */
-public class CreerProjetAction {
+public class CreerProjetAction implements Action {
+
+	public String execute(HttpServletRequest request) {
+		String nomProjet = request.getParameter("nomProjet");
+		return "projet/vueConfirmerCreerProjet.jsp";
+	}
 }
