@@ -11,9 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Rechercher un projet</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Rechercher un projet</h1>
+		<form method="POST" action="GestionProjetServlet?action=rechercherProjet">
+			<input type="text" name="rechercheProjet" id="rechercheProjet"/>
+			<input type="submit" value="Rechercher" name="btnSearch"/>
+		</form>
     </body>
 </html>

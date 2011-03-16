@@ -32,7 +32,8 @@ public class ProjetDAO extends DAO {
 
 	public List<Projet> rechercherProjetsParResp(String initiales)
 	{
-		String requete = "SELECT p FROM Projet p WHERE p.responsable = "+numero;
+		// A FAIRE
+		String requete = "SELECT p FROM Projet p WHERE p.responsable = "+initiales;
 		List<Projet> lesProjets = (List<Projet>)em.createQuery(requete).getResultList();
 
 		return lesProjets;

@@ -9,5 +9,5 @@ package métier.dao;
  *
  * @author vincent
  */
-public class TacheDAO {
+public class TacheDAO extends DAO {
 }

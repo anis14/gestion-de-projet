@@ -5,9 +5,15 @@
 
 package web.action;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author vincent
  */
-public class AjouterTacheAction {
+public class AjouterTacheAction implements Action {
+
+	public String execute(HttpServletRequest request) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 }
