@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package métier.entités;
+package metier.entites;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -15,15 +15,18 @@ import javax.persistence.*;
 @Entity
 @Table(name="employes")
 public class Employe implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
 	@Column(nullable=false, length=2)
 	private String initiales;
-	@Column(nullable=false, length=20)
+
+	@Column(nullable=false, length=30)
 	private String nom;
-	@Column(nullable=false, length=20)
+
+	@Column(nullable=false, length=30)
 	private String prenom;
 
 	public Employe() {}
@@ -59,4 +62,5 @@ public class Employe implements Serializable {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	
 }
