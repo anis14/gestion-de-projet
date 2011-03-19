@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package métier.entités;
+package metier.entites;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,30 +16,44 @@ import javax.persistence.*;
 @Entity
 @Table(name="taches")
 public class Tache implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
+	@OneToOne
+	@JoinColumn(name="projet_fk", nullable=false)
+	private Projet projet;
+
 	@Column(nullable=false)
-	private int projet;
-	@Column(nullable=false)
-	private int nature;
-	@Column(nullable=false)
-	private int employe;
+	private Nature nature;
+
+	@OneToOne
+	@JoinColumn(name="employe_fk", nullable=false)
+	private Employe employe;
+
 	@Column(nullable=false)
 	private int consomme;
+
 	@Column(nullable=false)
 	private String descriptif;
+
 	@Column(nullable=false)
 	private String remarque;
+
 	@Column(nullable=false)
-	private String etatTache;
+	@Enumerated(value=EnumType.STRING)
+	private Etat etatTache;
+
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateDebut;
+
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateFin;
+
 	@Column(nullable=false)
 	private double chargeEffective;
+	
 	@Column(nullable=false)
 	private double chargePrevisionnelle;
 
@@ -93,19 +107,19 @@ public class Tache implements Serializable {
 		this.descriptif = descriptif;
 	}
 
-	public int getEmploye() {
+	public Employe getEmploye() {
 		return employe;
 	}
 
-	public void setEmploye(int employe) {
+	public void setEmploye(Employe employe) {
 		this.employe = employe;
 	}
 
-	public String getEtatTache() {
+	public Etat getEtatTache() {
 		return etatTache;
 	}
 
-	public void setEtatTache(String etatTache) {
+	public void setEtatTache(Etat etatTache) {
 		this.etatTache = etatTache;
 	}
 
@@ -117,19 +131,19 @@ public class Tache implements Serializable {
 		this.id = id;
 	}
 
-	public int getNature() {
+	public Nature getNature() {
 		return nature;
 	}
 
-	public void setNature(int nature) {
+	public void setNature(Nature nature) {
 		this.nature = nature;
 	}
 
-	public int getProjet() {
+	public Projet getProjet() {
 		return projet;
 	}
 
-	public void setProjet(int projet) {
+	public void setProjet(Projet projet) {
 		this.projet = projet;
 	}
 
@@ -140,4 +154,5 @@ public class Tache implements Serializable {
 	public void setRemarque(String remarque) {
 		this.remarque = remarque;
 	}
+	
 }

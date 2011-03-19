@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package métier.entités;
+package metier.entites;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -14,28 +14,39 @@ import javax.persistence.*;
  */
 @Entity
 public class Projet implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-	@Column(nullable=false)
+	@Column(nullable=false, unique=true)
 	private String numero;
+
 	@Column(nullable=false)
 	private String libelle;
+
 	@Column(nullable=false)
-	private String etatProj;
+	@Enumerated(value=EnumType.STRING)
+	private Etat etatProj;
+
 	@Column(nullable=false)
 	private String archivage;
-	@Column(nullable=false)
+
+	@Column(nullable=true)
 	private String commentaire;
+
 	@Column(nullable=false)
 	private double chargeGlobalPrevue;
+
 	@Column(nullable=false)
 	private double chargeGlobalConsommee;
+
 	@Column(nullable=false)
 	private double chargeNonPlanifiee;
-	@Column(nullable=false)
-	private int responsable;
+
+	@OneToOne
+	@JoinColumn(name="responsable_fk", nullable=false)
+	private Employe responsable;
 
 	public Projet() {}
 
@@ -79,11 +90,11 @@ public class Projet implements Serializable {
 		this.commentaire = commentaire;
 	}
 
-	public String getEtatProj() {
+	public Etat getEtatProj() {
 		return etatProj;
 	}
 
-	public void setEtatProj(String etatProj) {
+	public void setEtatProj(Etat etatProj) {
 		this.etatProj = etatProj;
 	}
 
@@ -111,11 +122,12 @@ public class Projet implements Serializable {
 		this.numero = numero;
 	}
 
-	public int getResponsable() {
+	public Employe getResponsable() {
 		return responsable;
 	}
 
-	public void setResponsable(int responsable) {
+	public void setResponsable(Employe responsable) {
 		this.responsable = responsable;
 	}
+	
 }

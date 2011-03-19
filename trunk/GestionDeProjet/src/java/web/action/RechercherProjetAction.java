@@ -7,8 +7,9 @@ package web.action;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import métier.entités.Projet;
-import métier.services.ProjetService;
+import metier.entites.Etat;
+import metier.entites.Projet;
+import metier.services.ProjetService;
 
 /**
  *
@@ -16,15 +17,28 @@ import métier.services.ProjetService;
  */
 public class RechercherProjetAction implements Action {
 
+	private String type;
+	private Etat etat;
+
+	public RechercherProjetAction(String type, Etat etat) {
+		this.type = type;
+		this.etat = etat;
+	}
+
 	public String execute(HttpServletRequest request) {
 		List<Projet> lesProjets = null;
 
-		if (request.getParameter("rechercheProjet") == null)
-		{
-			lesProjets = new ProjetService().recupererProjets();
+		if (type.equalsIgnoreCase("")) {
+			lesProjets = new ProjetService().recupererProjets(etat);
+			request.setAttribute("lesProjets", lesProjets);
+		} else if (type.equalsIgnoreCase("numero")) {
+			lesProjets = new ProjetService().rechercherProjetsParNumero(type, etat);
+			request.setAttribute("lesProjets", lesProjets);
+		} else if (type.equalsIgnoreCase("responsable")) {
+			lesProjets = new ProjetService().rechercherProjetsParResp(type, etat);
 			request.setAttribute("lesProjets", lesProjets);
 		}
 		
-		return "vueRechercheProjet.jsp";
+		return "projet/vueRechercherProjet.jsp";
 	}
 }

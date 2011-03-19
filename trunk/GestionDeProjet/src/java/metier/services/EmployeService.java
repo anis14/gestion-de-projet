@@ -3,11 +3,11 @@
  * and open the template in the editor.
  */
 
-package métier.dao;
+package metier.services;
 
 /**
  *
  * @author vincent
  */
-public class TacheDAO extends DAO {
+public class EmployeService {
 }
