@@ -32,11 +32,10 @@ public class GestionProjetServlet extends HttpServlet {
 		Action classeAction = null;
 		Etat etat;
 
-		if (request.getParameter("etatRecherche") == null) {
+		if (request.getParameter("etatRecherche") == null)
 			etat = Etat.ENCOURS;
-		} else {
+		else
 			etat = Etat.valueOf(request.getParameter("etatRecherche"));
-		}
 
 		if (action.equalsIgnoreCase("ajouterTache"))
 			classeAction = new AjouterTacheAction();
