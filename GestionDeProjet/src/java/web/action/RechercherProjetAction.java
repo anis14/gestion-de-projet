@@ -32,10 +32,10 @@ public class RechercherProjetAction implements Action {
 			lesProjets = new ProjetService().recupererProjets(etat);
 			request.setAttribute("lesProjets", lesProjets);
 		} else if (type.equalsIgnoreCase("numero")) {
-			lesProjets = new ProjetService().rechercherProjetsParNumero(type, etat);
+			lesProjets = new ProjetService().rechercherProjetsParNumero(request.getParameter("rechercheProjet"), etat);
 			request.setAttribute("lesProjets", lesProjets);
 		} else if (type.equalsIgnoreCase("responsable")) {
-			lesProjets = new ProjetService().rechercherProjetsParResp(type, etat);
+			lesProjets = new ProjetService().rechercherProjetsParResp(request.getParameter("rechercheProjet"), etat);
 			request.setAttribute("lesProjets", lesProjets);
 		}
 		
