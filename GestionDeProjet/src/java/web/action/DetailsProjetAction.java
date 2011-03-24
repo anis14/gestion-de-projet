@@ -5,7 +5,10 @@
 
 package web.action;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import metier.entites.Projet;
+import metier.services.ProjetService;
 
 /**
  *
@@ -13,7 +16,21 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class DetailsProjetAction implements Action {
 
-	public String execute(HttpServletRequest request) {
-		throw new UnsupportedOperationException("Not supported yet.");
+	private int idProjet;
+
+	public DetailsProjetAction(int idProjet) {
+		this.idProjet = idProjet;
 	}
+
+	public String execute(HttpServletRequest request) {
+		if (idProjet > 0) {
+			Projet leProjet = new ProjetService().detailsProjet(idProjet);
+			//List<Tache> lesTaches = new TacheService().detailsTachesProjet(idProjet);
+			request.setAttribute("projet", leProjet);
+			//request.setAttribute("taches", lesTaches);
+		}
+
+		return "projet/vueDetailsProjet.jsp";
+	}
+
 }

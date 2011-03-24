@@ -29,7 +29,7 @@ public class Projet implements Serializable {
 	@Enumerated(value=EnumType.STRING)
 	private Etat etatProj;
 
-	@Column(nullable=false)
+	@Column(nullable=false, length=3)
 	private String archivage;
 
 	@Column(nullable=true)

@@ -6,6 +6,8 @@
 package web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,32 +31,45 @@ public class GestionProjetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		String vue = "index.jsp";
+		String archive;
 		Action classeAction = null;
-		Etat etat;
+		List<Etat> lesEtats = new ArrayList<Etat>();
 
-		if (request.getParameter("etatRecherche") == null)
-			etat = Etat.ENCOURS;
-		else
-			etat = Etat.valueOf(request.getParameter("etatRecherche"));
+		if (request.getParameterValues("etatRecherche") != null) {
+			String[] etats = request.getParameterValues("etatRecherche");
+
+			for (int i = 0; i < etats.length; i++) {
+				Etat unEtat = Etat.valueOf(etats[i]);
+				lesEtats.add(unEtat);
+			}
+		} else {
+			lesEtats.add(Etat.ENCOURS);
+		}
+
+		if (request.getParameter("archivage") != null) {
+			archive = "oui";
+		} else {
+			archive = "non";
+		}
 
 		if (action.equalsIgnoreCase("ajouterTache"))
 			classeAction = new AjouterTacheAction();
 		else if (action.equalsIgnoreCase("creerProjet"))
 			classeAction = new CreerProjetAction();
 		else if (action.equalsIgnoreCase("detailsProjet"))
-			classeAction = new DetailsProjetAction();
+			classeAction = new DetailsProjetAction(Integer.parseInt(request.getParameter("projet")));
 		else if (action.equalsIgnoreCase("detailsTache"))
 			classeAction = new DetailsTacheAction();
 		else if (action.equalsIgnoreCase("editerProjet"))
 			classeAction = new EditerProjetAction();
 		else if (action.equalsIgnoreCase("afficherProjet") || request.getParameter("rechercheProjet").isEmpty())
-			classeAction = new RechercherProjetAction("", etat);
+			classeAction = new RechercherProjetAction("", lesEtats, archive);
 		else if (action.equalsIgnoreCase("rechercherProjet") && !request.getParameter("rechercheProjet").isEmpty()
 				&& request.getParameter("typeRecherche").equalsIgnoreCase("numero"))
-			classeAction = new RechercherProjetAction("numero", etat);
+			classeAction = new RechercherProjetAction("numero", lesEtats, archive);
 		else if (action.equalsIgnoreCase("rechercherProjet") && !request.getParameter("rechercheProjet").isEmpty()
 				&& request.getParameter("typeRecherche").equalsIgnoreCase("responsable"))
-			classeAction = new RechercherProjetAction("responsable", etat);
+			classeAction = new RechercherProjetAction("responsable", lesEtats, archive);
 		
 		if (classeAction != null)
 			vue = classeAction.execute(request);
