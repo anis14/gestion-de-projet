@@ -17,25 +17,26 @@ import metier.services.ProjetService;
  */
 public class RechercherProjetAction implements Action {
 
-	private String type;
-	private Etat etat;
+	private String type, archive;
+	private List<Etat> etats;
 
-	public RechercherProjetAction(String type, Etat etat) {
+	public RechercherProjetAction(String type, List<Etat> etats, String archive) {
 		this.type = type;
-		this.etat = etat;
+		this.etats = etats;
+		this.archive = archive;
 	}
 
 	public String execute(HttpServletRequest request) {
 		List<Projet> lesProjets = null;
 
 		if (type.equalsIgnoreCase("")) {
-			lesProjets = new ProjetService().recupererProjets(etat);
+			lesProjets = new ProjetService().recupererProjets(etats, archive);
 			request.setAttribute("lesProjets", lesProjets);
 		} else if (type.equalsIgnoreCase("numero")) {
-			lesProjets = new ProjetService().rechercherProjetsParNumero(request.getParameter("rechercheProjet"), etat);
+			lesProjets = new ProjetService().rechercherProjetsParNumero(request.getParameter("rechercheProjet"), etats, archive);
 			request.setAttribute("lesProjets", lesProjets);
 		} else if (type.equalsIgnoreCase("responsable")) {
-			lesProjets = new ProjetService().rechercherProjetsParResp(request.getParameter("rechercheProjet"), etat);
+			lesProjets = new ProjetService().rechercherProjetsParResp(request.getParameter("rechercheProjet"), etats, archive);
 			request.setAttribute("lesProjets", lesProjets);
 		}
 		
