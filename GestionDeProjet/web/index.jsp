@@ -16,6 +16,6 @@
     <body>
         <h1>Accueil Gestion de projet</h1>
 		<a href="GestionProjetServlet?action=afficherProjet">Rechercher un projet</a><br />
-		<a href="projet/vueCreerProjet.jsp">Cr&eacute;er un projet</a>
+		<a href="GestionProjetServlet?action=creerProjetResp">Cr&eacute;er un projet</a>
     </body>
 </html>

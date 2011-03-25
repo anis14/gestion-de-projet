@@ -6,6 +6,7 @@
 package metier.dao;
 
 import java.util.List;
+import metier.entites.Employe;
 import metier.entites.Etat;
 import metier.entites.Projet;
 
@@ -25,6 +26,7 @@ public class ProjetDAO extends DAO {
 		String requete = requete(rq, etats);
 		
 		List<Projet> lesProjets = (List<Projet>)em.createQuery(requete).getResultList();
+		em.close();
 
 		return lesProjets;
 	}
@@ -34,6 +36,7 @@ public class ProjetDAO extends DAO {
 		String requete = requete(rq, etats);
 
 		List<Projet> lesProjets = (List<Projet>)em.createQuery(requete).getResultList();
+		em.close();
 
 		return lesProjets;
 	}
@@ -43,6 +46,7 @@ public class ProjetDAO extends DAO {
 		String requete = requete(rq, etats);
 
 		List<Projet> lesProjets = (List<Projet>)em.createQuery(requete).getResultList();
+		em.close();
 
 		return lesProjets;
 	}
@@ -79,6 +83,18 @@ public class ProjetDAO extends DAO {
 		}
 
 		return requete;
+	}
+
+	public Projet enregistrerProjet(Projet unProjet) {
+		Employe lEmploye = new EmployeDAO().recupererResponsableParID(unProjet.getResponsable().getId());
+		unProjet.setResponsable(lEmploye);
+		
+		em.getTransaction().begin();
+		em.persist(unProjet);
+		em.getTransaction().commit();
+		em.close();
+
+		return unProjet;
 	}
 
 }

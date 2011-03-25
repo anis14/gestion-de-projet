@@ -32,4 +32,11 @@ public class ProjetService {
 		return new ProjetDAO().detailsProjet(id);
 	}
 
+	public Projet enregistrerProjet(Projet unProjet) {
+		unProjet.setChargeGlobalConsommee(0);
+		unProjet.setEtatProj(Etat.INIT);
+		
+		return new ProjetDAO().enregistrerProjet(unProjet);
+	}
+
 }

@@ -41,9 +41,6 @@ public class Projet implements Serializable {
 	@Column(nullable=false)
 	private double chargeGlobalConsommee;
 
-	@Column(nullable=false)
-	private double chargeNonPlanifiee;
-
 	@OneToOne
 	@JoinColumn(name="responsable_fk", nullable=false)
 	private Employe responsable;
@@ -72,14 +69,6 @@ public class Projet implements Serializable {
 
 	public void setChargeGlobalPrevue(double chargeGlobalPrevue) {
 		this.chargeGlobalPrevue = chargeGlobalPrevue;
-	}
-
-	public double getChargeNonPlanifiee() {
-		return chargeNonPlanifiee;
-	}
-
-	public void setChargeNonPlanifiee(double chargeNonPlanifiee) {
-		this.chargeNonPlanifiee = chargeNonPlanifiee;
 	}
 
 	public String getCommentaire() {
