@@ -54,8 +54,10 @@ public class GestionProjetServlet extends HttpServlet {
 
 		if (action.equalsIgnoreCase("ajouterTache"))
 			classeAction = new AjouterTacheAction();
+		else if (action.equalsIgnoreCase("creerProjetResp"))
+			classeAction = new CreerProjetAction("resp");
 		else if (action.equalsIgnoreCase("creerProjet"))
-			classeAction = new CreerProjetAction();
+			classeAction = new CreerProjetAction("proj");
 		else if (action.equalsIgnoreCase("detailsProjet"))
 			classeAction = new DetailsProjetAction(Integer.parseInt(request.getParameter("projet")));
 		else if (action.equalsIgnoreCase("detailsTache"))

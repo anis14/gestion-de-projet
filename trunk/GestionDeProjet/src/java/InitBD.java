@@ -35,7 +35,6 @@ public class InitBD {
 			p1.setResponsable(e1);
 			p1.setChargeGlobalConsommee(0);
 			p1.setChargeGlobalPrevue(50);
-			p1.setChargeNonPlanifiee(10);
 			p1.setEtatProj(Etat.INIT);
 
 		em.persist(e1);

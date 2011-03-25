@@ -5,7 +5,12 @@
 
 package web.action;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import metier.entites.Employe;
+import metier.entites.Projet;
+import metier.services.EmployeService;
+import metier.services.ProjetService;
 
 /**
  *
@@ -13,8 +18,37 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CreerProjetAction implements Action {
 
-	public String execute(HttpServletRequest request) {
-		String nomProjet = request.getParameter("nomProjet");
-		return "projet/vueConfirmerCreerProjet.jsp";
+	private String type;
+
+	public CreerProjetAction(String type) {
+		this.type = type;
 	}
+
+	public String execute(HttpServletRequest request) {
+		if (type.equalsIgnoreCase("resp")) {
+			List<Employe> lesEmployes = new EmployeService().recupererResponsables();
+			request.setAttribute("lesEmployes", lesEmployes);
+
+			return "projet/vueCreerProjet.jsp";
+		} else if (type.equalsIgnoreCase("proj")) {
+			Employe unEmploye = new Employe();
+				unEmploye.setId(Integer.parseInt(request.getParameter("responsable")));
+
+			Projet leProjet = new Projet();
+				leProjet.setNumero(request.getParameter("numProjet"));
+				leProjet.setResponsable(unEmploye);
+				leProjet.setLibelle(request.getParameter("libelle"));
+				leProjet.setChargeGlobalPrevue(Double.parseDouble(request.getParameter("chargesPrevues")));
+				leProjet.setArchivage(request.getParameter("archiver"));
+				leProjet.setCommentaire(request.getParameter("comm"));
+
+			leProjet =  new ProjetService().enregistrerProjet(leProjet);
+			request.setAttribute("projet", leProjet);
+
+			return "projet/vueConfirmerCreerProjet.jsp";
+		}
+
+		return "";
+	}
+	
 }
