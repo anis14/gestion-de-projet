@@ -4,8 +4,7 @@
     Author     : vincent
 --%>
 
-<%@page import="java.util.List"%>
-<%@page import="metier.entites.Employe"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,20 +19,17 @@
 		<form method="POST" action="../GestionProjetServlet?action=creerProjet">
 			<label for="numProjet">Num&eacute;ro du projet</label> : <input type="text" id="numProjet" name="numProjet" /><br />
 			Responsable :
-			<% List<Employe> lesEmployes = (List<Employe>)request.getAttribute("lesEmployes");
-				if (lesEmployes != null) { %>
-					<select name="responsable" id="responsable">
-					<% for (Employe e : lesEmployes) { %>
-						<option value=<% out.println(e.getId()); %> >
-							<% out.println(e.getNom());
-							out.println(" "+e.getPrenom()); %>
-						</option>
-					<% } %>
-					</select>
-				<% } %>
+			<c:set var="employes" value="${lesEmployes}"/>
+			<select name="responsable" id="responsable">
+				<c:forEach var="e" items="${employes}">
+					<option value="${e.id}">
+						${e.nom} ${e.prenom}
+					</option>
+				</c:forEach>
+			</select>
 			<br />
 			<label for="libelle">Libell&eacute;</label> : <input type="text" id="libelle" name="libelle" /><br />
-			<label for="chargesPrevues">Charges prévues (jours hommes)</label> : <input type="text" id="chargesPrevues" name="chargesPrevues" /><br /><br />
+			<label for="chargesPrevues">Charges pr&eacute;vues (jours hommes)</label> : <input type="text" id="chargesPrevues" name="chargesPrevues" /><br /><br />
 			Archiver : 
 			<input type="radio" id="archOui" name="archiver" value="oui" /> <label for="archOui">Oui</label>
 			<input type="radio" id="archNon" name="archiver" value="non" checked="checked" /> <label for="archNon">Non</label><br /><br />

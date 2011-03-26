@@ -62,8 +62,10 @@ public class GestionProjetServlet extends HttpServlet {
 			classeAction = new DetailsProjetAction(Integer.parseInt(request.getParameter("projet")));
 		else if (action.equalsIgnoreCase("detailsTache"))
 			classeAction = new DetailsTacheAction();
+		else if (action.equalsIgnoreCase("editerProjetVue"))
+			classeAction = new EditerProjetAction("vue");
 		else if (action.equalsIgnoreCase("editerProjet"))
-			classeAction = new EditerProjetAction();
+			classeAction = new EditerProjetAction("edit");
 		else if (action.equalsIgnoreCase("afficherProjet") || request.getParameter("rechercheProjet").isEmpty())
 			classeAction = new RechercherProjetAction("", lesEtats, archive);
 		else if (action.equalsIgnoreCase("rechercherProjet") && !request.getParameter("rechercheProjet").isEmpty()

@@ -20,6 +20,10 @@ public class ProjetService {
 		return new ProjetDAO().recupererProjets(etats, archive);
 	}
 
+	public Projet recupererProjetParId(int idProjet) {
+		return new ProjetDAO().recupererProjetParId(idProjet);
+	}
+
 	public List<Projet> rechercherProjetsParNumero(String num, List<Etat> etats, String archive) {
 		return new ProjetDAO().rechercherProjetsParNumero(num, etats, archive);
 	}
@@ -28,8 +32,8 @@ public class ProjetService {
 		return new ProjetDAO().rechercherProjetsParResp(resp, etats, archive);
 	}
 
-	public Projet detailsProjet(int id) {
-		return new ProjetDAO().detailsProjet(id);
+	public Projet detailsProjet(int idProjet) {
+		return new ProjetDAO().detailsProjet(idProjet);
 	}
 
 	public Projet enregistrerProjet(Projet unProjet) {
@@ -37,6 +41,10 @@ public class ProjetService {
 		unProjet.setEtatProj(Etat.INIT);
 		
 		return new ProjetDAO().enregistrerProjet(unProjet);
+	}
+
+	public Projet editerProjet(Projet unProjet) {
+		return new ProjetDAO().editerProjet(unProjet);
 	}
 
 }
