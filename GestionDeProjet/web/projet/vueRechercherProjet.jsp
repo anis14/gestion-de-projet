@@ -5,8 +5,6 @@
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="metier.entites.Projet"%>
-<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,73 +28,82 @@
 			<input type="text" name="rechercheProjet" id="rechercheProjet" />
 			<input type="submit" value="Rechercher" name="btnSearch" />
 		</form><br />
-		<% List<Projet> projets = (List<Projet>)request.getAttribute("lesProjets");
-			if (projets != null) { %>
-				<table border="1px">
-					<thead>
-						<tr>
-							<th>Num&eacute;ro</th>
-							<th>Libell&eacute;</th>
-							<th>Responsable</th>
-							<th>Charge pr&eacute;vue</th>
-							<th>Charge consomm&eacute;e</th>
-							<th>Etat</th>
-							<th>D&eacute;tail</th>
-						</tr>
-					</thead>
-					<tbody>
-				<% for (Projet p : projets) { %>
-					<tr>
-						<td><% if (p.getArchivage().equalsIgnoreCase("oui")) { %>
-								<label style="color: red">
-							<% } else { %>
-								<label>
-							<% } %>
-							<% out.println(p.getNumero()); %></label>
-						</td>
-						<td><% if (p.getArchivage().equalsIgnoreCase("oui")) { %>
-								<label style="color: red">
-							<% } else { %>
-								<label>
-							<% } %>
-							<% out.println(p.getLibelle()); %></label>
-						</td>
-						<td><% if (p.getArchivage().equalsIgnoreCase("oui")) { %>
-								<label style="color: red">
-							<% } else { %>
-								<label>
-							<% } %>
-							<% out.println(p.getResponsable().getInitiales()); %></label>
-						</td>
-						<td><% if (p.getArchivage().equalsIgnoreCase("oui")) { %>
-								<label style="color: red">
-							<% } else { %>
-								<label>
-							<% } %>
-							<% out.println(p.getChargeGlobalPrevue()); %></label>
-						</td>
-						<td><% if (p.getArchivage().equalsIgnoreCase("oui")) { %>
-								<label style="color: red">
-							<% } else { %>
-								<label>
-							<% } %>
-							<% out.println(p.getChargeGlobalConsommee()); %></label>
-						</td>
-						<td><% if (p.getArchivage().equalsIgnoreCase("oui")) { %>
-								<label style="color: red">
-							<% } else { %>
-								<label>
-							<% } %>
-							<% out.println(p.getEtatProj().getEtat()); %></label>
-						</td>
-						<c:set var="id"><%= p.getId() %></c:set>
-						<td><a href="GestionProjetServlet?action=detailsProjet&projet=${id}">D&eacute;tail</a></td>
-					</tr>
-				<% } %>
-				</tbody>
-				</table>
-			<% } %>
-			<label style="font-size: 9pt; font-style: italic;">Une ligne en rouge signifie que le projet est archivé.</label>
+		<c:set var="projets" value="${lesProjets}"/>
+		<table border="1px">
+			<thead>
+				<tr>
+					<th>Num&eacute;ro</th>
+					<th>Libell&eacute;</th>
+					<th>Responsable</th>
+					<th>Charge pr&eacute;vue</th>
+					<th>Charge consomm&eacute;e</th>
+					<th>Etat</th>
+					<th>D&eacute;tail</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="p" items="${projets}">
+				<tr>
+					<td>
+						<c:if test="${p.archivage == 'oui'}">
+							<label style="color: red">
+						</c:if>
+						<c:if test="${p.archivage == 'non'}">
+							<label>
+						</c:if>
+						${p.numero}</label>
+					</td>
+					<td>
+						<c:if test="${p.archivage == 'oui'}">
+							<label style="color: red">
+						</c:if>
+						<c:if test="${p.archivage == 'non'}">
+							<label>
+						</c:if>
+						${p.libelle}</label>
+					</td>
+					<td>
+						<c:if test="${p.archivage == 'oui'}">
+							<label style="color: red">
+						</c:if>
+						<c:if test="${p.archivage == 'non'}">
+							<label>
+						</c:if>
+						${p.responsable.initiales}</label>
+					</td>
+					<td>
+						<c:if test="${p.archivage == 'oui'}">
+							<label style="color: red">
+						</c:if>
+						<c:if test="${p.archivage == 'non'}">
+							<label>
+						</c:if>
+						${p.chargeGlobalPrevue}</label>
+					</td>
+					<td>
+						<c:if test="${p.archivage == 'oui'}">
+							<label style="color: red">
+						</c:if>
+						<c:if test="${p.archivage == 'non'}">
+							<label>
+						</c:if>
+						${p.chargeGlobalConsommee}</label>
+					</td>
+					<td>
+						<c:if test="${p.archivage == 'oui'}">
+							<label style="color: red">
+						</c:if>
+						<c:if test="${p.archivage == 'non'}">
+							<label>
+						</c:if>
+						${p.etatProj.etat}</label>
+					</td>
+					<td><a href="GestionProjetServlet?action=detailsProjet&projet=${p.id}">D&eacute;tail</a></td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<label style="font-size: 9pt; font-style: italic;">Une ligne en rouge signifie que le projet est archivé.</label>
 		<br /><br /><a href="../index.jsp">Accueil</a>
     </body>
 </html>

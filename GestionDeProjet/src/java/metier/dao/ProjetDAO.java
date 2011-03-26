@@ -97,4 +97,31 @@ public class ProjetDAO extends DAO {
 		return unProjet;
 	}
 
+	public Projet recupererProjetParId(int idProjet) {
+		String requete = "SELECT p FROM Projet p WHERE p.id = "+idProjet;
+		Projet leProjet = (Projet)em.createQuery(requete).getSingleResult();
+
+		return leProjet;
+	}
+
+	public Projet editerProjet(Projet unProjet) {
+		Employe lEmploye = new EmployeDAO().recupererResponsableParID(unProjet.getResponsable().getId());
+		unProjet.setResponsable(lEmploye);
+
+		em.getTransaction().begin();
+		Projet leProjet = em.find(Projet.class, unProjet.getId());
+			leProjet.setNumero(unProjet.getNumero());
+			leProjet.setArchivage(unProjet.getArchivage());
+			leProjet.setLibelle(unProjet.getLibelle());
+			leProjet.setChargeGlobalConsommee(unProjet.getChargeGlobalConsommee());
+			leProjet.setChargeGlobalPrevue(unProjet.getChargeGlobalPrevue());
+			leProjet.setCommentaire(unProjet.getCommentaire());
+			leProjet.setEtatProj(unProjet.getEtatProj());
+			leProjet.setResponsable(unProjet.getResponsable());
+		em.getTransaction().commit();
+		em.close();
+
+		return unProjet;
+	}
+
 }
