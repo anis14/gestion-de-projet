@@ -26,6 +26,7 @@ public class Tache implements Serializable {
 	private Projet projet;
 
 	@Column(nullable=false)
+	@Enumerated(value=EnumType.STRING)
 	private Nature nature;
 
 	@OneToOne
@@ -38,7 +39,7 @@ public class Tache implements Serializable {
 	@Column(nullable=false)
 	private String descriptif;
 
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private String remarque;
 
 	@Column(nullable=false)

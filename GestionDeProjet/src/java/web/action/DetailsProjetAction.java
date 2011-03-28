@@ -8,7 +8,9 @@ package web.action;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import metier.entites.Projet;
+import metier.entites.Tache;
 import metier.services.ProjetService;
+import metier.services.TacheService;
 
 /**
  *
@@ -25,9 +27,9 @@ public class DetailsProjetAction implements Action {
 	public String execute(HttpServletRequest request) {
 		if (idProjet > 0) {
 			Projet leProjet = new ProjetService().detailsProjet(idProjet);
-			//List<Tache> lesTaches = new TacheService().detailsTachesProjet(idProjet);
+			List<Tache> lesTaches = new TacheService().detailsTachesProjet(idProjet);
 			request.setAttribute("projet", leProjet);
-			//request.setAttribute("taches", lesTaches);
+			request.setAttribute("taches", lesTaches);
 		}
 
 		return "projet/vueDetailsProjet.jsp";

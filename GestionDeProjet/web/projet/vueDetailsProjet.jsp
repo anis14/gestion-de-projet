@@ -18,8 +18,12 @@
 		<c:set var="projet" value="${projet}"/>
         <h1>D&eacute;tail du projet ${projet.numero}</h1>
 		Num&eacute;ro : ${projet.numero}<br />
-		Responsable : ${projet.responsable.initiales}<br />
-		Etat : ${projet.etatProj.etat}
+		Responsable : ${projet.responsable.nom} ${projet.responsable.prenom}<br />
+		Etat : ${projet.etatProj.etat}<br />
+		Libell&eacute; : ${projet.libelle}<br />
+		Charges pr&eacute;vues : ${projet.chargeGlobalPrevue}<br />
+		Charge(s) consomm&eacute;e(s) : ${projet.chargeGlobalConsommee}<br />
+		Commentaire : ${projet.commentaire}<br />
 		<h1>D&eacute;tail des t&acirc;ches</h1>
 		<table border="1px">
 			<thead>
@@ -28,23 +32,36 @@
 					<th>Employ&eacute;</th>
 					<th>Charge pr&eacute;vue</th>
 					<th>Charge effectu&eacute;e</th>
-					<th>P&eacute;riode</th>
+					<th>Date de d&eacute;but</th>
+					<th>Date de fin</th>
 					<th>% consomm&eacute;</th>
+					<th>Etat</th>
+					<th>Descriptif</th>
+					<th>Remarque</th>
+					<th>Editer</th>
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="t" items="${taches}">
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>${t.nature}</td>
+					<td>${t.employe.initiales}</td>
+					<td>${t.chargePrevisionnelle}</td>
+					<td>${t.chargeEffective}</td>
+					<td>${t.dateDebut.date}-${t.dateDebut.month+1}-${t.dateDebut.year+1900}</td>
+					<td>${t.dateDebut.date}-${t.dateDebut.month+1}-${t.dateDebut.year+1900}</td>
+					<td>${t.consomme}</td>
+					<td>${t.etatTache.etat}</td>
+					<td>${t.descriptif}</td>
+					<td>${t.remarque}</td>
+					<td><a href="">Editer</a></td>
 				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<br /><br />
 		<a href="GestionProjetServlet?action=editerProjetVue&projet=${projet.id}">Editer projet</a><br />
+		<a href="GestionProjetServlet?action=ajouterTacheVue&projet=${projet.id}">Ajouter une tache</a><br />
 		<a href="../index.jsp">Accueil</a>
     </body>
 </html>

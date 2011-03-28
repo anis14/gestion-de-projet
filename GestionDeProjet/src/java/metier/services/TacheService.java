@@ -5,9 +5,18 @@
 
 package metier.services;
 
+import java.util.List;
+import metier.dao.TacheDAO;
+import metier.entites.Tache;
+
 /**
  *
  * @author vincent
  */
 public class TacheService {
+
+	public List<Tache> detailsTachesProjet(int idProjet) {
+		return new TacheDAO().detailsTachesProjet(idProjet);
+	}
+	
 }
