@@ -24,7 +24,7 @@ public enum Etat implements Serializable {
 		return etat;
 	}
 
-	public String toStringForSQL()	{
+	public String toStringForSQL() {
 		return getClass().getName()+"."+toString();
 	}
 
