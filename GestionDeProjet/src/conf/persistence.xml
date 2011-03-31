@@ -5,6 +5,7 @@
     <class>metier.entites.Tache</class>
     <class>metier.entites.Employe</class>
     <class>metier.entites.Projet</class>
+    <class>metier.entites.Nature</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="toplink.jdbc.user" value="vlevache"/>

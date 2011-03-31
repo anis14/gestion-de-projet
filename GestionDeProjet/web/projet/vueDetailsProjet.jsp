@@ -44,12 +44,12 @@
 			<tbody>
 				<c:forEach var="t" items="${taches}">
 				<tr>
-					<td>${t.nature}</td>
+					<td>${t.nature.code}</td>
 					<td>${t.employe.initiales}</td>
 					<td>${t.chargePrevisionnelle}</td>
 					<td>${t.chargeEffective}</td>
 					<td>${t.dateDebut.date}-${t.dateDebut.month+1}-${t.dateDebut.year+1900}</td>
-					<td>${t.dateDebut.date}-${t.dateDebut.month+1}-${t.dateDebut.year+1900}</td>
+					<td>${t.dateFin.date}-${t.dateFin.month+1}-${t.dateFin.year+1900}</td>
 					<td>${t.consomme}</td>
 					<td>${t.etatTache.etat}</td>
 					<td>${t.descriptif}</td>

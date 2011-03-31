@@ -32,5 +32,19 @@ public class EmployeDAO extends DAO {
 
 		return lEmploye;
 	}
+
+	public List<Employe> recupererEmployes() {
+		String requete = "SELECT e FROM Employe e";
+		List<Employe> lesEmployes = (List<Employe>)em.createQuery(requete).getResultList();
+
+		return lesEmployes;
+	}
+
+	public Employe recupererEmployeParId(int idEmploye) {
+		String requete = "SELECT e FROM Employe e WHERE e.id = "+idEmploye;
+		Employe lEmploye = (Employe)em.createQuery(requete).getSingleResult();
+
+		return lEmploye;
+	}
 	
 }
