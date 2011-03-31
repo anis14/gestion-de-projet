@@ -14,7 +14,6 @@ import javax.persistence.*;
  * @author vincent
  */
 @Entity
-@Table(name="taches")
 public class Tache implements Serializable {
 	
 	@Id
@@ -25,8 +24,8 @@ public class Tache implements Serializable {
 	@JoinColumn(name="projet_fk", nullable=false)
 	private Projet projet;
 
-	@Column(nullable=false)
-	@Enumerated(value=EnumType.STRING)
+	@OneToOne
+	@JoinColumn(name="nature_fk", nullable=false)
 	private Nature nature;
 
 	@OneToOne

@@ -18,5 +18,13 @@ public class EmployeService {
 	public List<Employe> recupererResponsables() {
 		return new EmployeDAO().recupererResponsables();
 	}
+
+	public List<Employe> recupererEmployes() {
+		return new EmployeDAO().recupererEmployes();
+	}
+
+	public Employe recupererEmployeParId(int idEmploye) {
+		return new EmployeDAO().recupererEmployeParId(idEmploye);
+	}
 	
 }

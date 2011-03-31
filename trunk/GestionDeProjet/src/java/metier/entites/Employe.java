@@ -13,7 +13,6 @@ import javax.persistence.*;
  * @author vincent
  */
 @Entity
-@Table(name="employes")
 public class Employe implements Serializable {
 
 	@Id

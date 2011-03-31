@@ -60,7 +60,6 @@ public class InitBD {
 			n6.setCode("AU");
 			n6.setLibelle("Assistance aux utilisateurs");
 
-		// ne peut être utilisé que pour le code projet MAINT
 		Nature n7 = new Nature();
 			n7.setCode("GANO");
 			n7.setLibelle("Gestion des annomalies du SI");
@@ -69,7 +68,6 @@ public class InitBD {
 			n8.setCode("ADPJ");
 			n8.setLibelle("Administration de projet");
 
-		// ne peut être utilisé que si le code projet est GESTI
 		Nature n9 = new Nature();
 			n9.setCode("ADPS");
 			n9.setLibelle("Administration personnelle");
@@ -78,12 +76,10 @@ public class InitBD {
 			n10.setCode("ACQC");
 			n10.setLibelle("Acquisition de connaissance");
 
-		// ne peut être utilisé que si le code projet est GESTI
 		Nature n11 = new Nature();
 			n11.setCode("COMM");
 			n11.setLibelle("Communication");
 
-		// ne peut être utilisé que pour le code projet MAINT
 		Nature n12 = new Nature();
 			n12.setCode("CORRI");
 			n12.setLibelle("Activité effectuée dans le cadre d'une maintenance");
@@ -95,6 +91,10 @@ public class InitBD {
 		Nature n14 = new Nature();
 			n14.setCode("ABS");
 			n14.setLibelle("Absent");
+
+		Nature n15 = new Nature();
+			n15.setCode("DDT");
+			n15.setLibelle("Demande de travaux");
 
 		em.persist(e1);
 		em.persist(p1);
@@ -113,6 +113,7 @@ public class InitBD {
 		em.persist(n12);
 		em.persist(n13);
 		em.persist(n14);
+		em.persist(n15);
 
 		em.getTransaction().commit();
 		em.close();

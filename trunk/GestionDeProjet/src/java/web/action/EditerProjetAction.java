@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import metier.entites.Employe;
 import metier.entites.Etat;
 import metier.entites.Projet;
+import metier.entites.Tache;
 import metier.services.EmployeService;
 import metier.services.ProjetService;
+import metier.services.TacheService;
 
 /**
  *
@@ -59,7 +61,9 @@ public class EditerProjetAction implements Action {
 			else if (leProjet.getChargeGlobalConsommee() > 0)
 				leProjet.setEtatProj(Etat.ENCOURS);
 
+			List<Tache> lesTaches = new TacheService().detailsTachesProjet(leProjet.getId());
 			Projet projet = new ProjetService().editerProjet(leProjet);
+			request.setAttribute("taches", lesTaches);
 			request.setAttribute("projet", projet);
 
 			return "projet/vueDetailsProjet.jsp";
