@@ -56,7 +56,7 @@ public class AjouterTacheAction implements Action {
 				dateDebut += "-"+request.getParameter("moisD");
 				dateDebut += "-"+request.getParameter("anneeD");
 
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 			Date date = null;
 			
 			try {

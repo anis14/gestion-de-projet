@@ -56,6 +56,10 @@ public class GestionProjetServlet extends HttpServlet {
 			classeAction = new AjouterTacheAction(Integer.parseInt(request.getParameter("projet")), "vue");
 		else if(action.equalsIgnoreCase("ajouterTache"))
 			classeAction = new AjouterTacheAction(Integer.parseInt(request.getParameter("projet")), "add");
+		else if (action.equalsIgnoreCase("editerTacheVue"))
+			classeAction = new EditerTacheAction(Integer.parseInt(request.getParameter("tache")), Integer.parseInt(request.getParameter("projet")), "vue");
+		else if (action.equalsIgnoreCase("editerTache"))
+			classeAction = new EditerTacheAction(Integer.parseInt(request.getParameter("tache")), Integer.parseInt(request.getParameter("projet")), "edit");
 		else if (action.equalsIgnoreCase("creerProjetResp"))
 			classeAction = new CreerProjetAction("resp");
 		else if (action.equalsIgnoreCase("creerProjet"))

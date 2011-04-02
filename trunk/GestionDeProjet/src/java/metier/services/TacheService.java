@@ -45,5 +45,19 @@ public class TacheService {
 	public Nature recupererNatureParId(int idNature) {
 		return new TacheDAO().recupererNatureParId(idNature);
 	}
+
+	public Tache recupererTacheParId(int idTache) {
+		return new TacheDAO().recupererTacheParId(idTache);
+	}
+
+	public Tache editerTache(Tache uneTache) {
+		Date d = uneTache.getDateDebut();
+		Calendar c = Calendar.getInstance();
+		c.setTime(d);
+		c.add(Calendar.DATE, (int)uneTache.getChargePrevisionnelle());
+		uneTache.setDateFin(c.getTime());
+
+		return new TacheDAO().editerTache(uneTache);
+	}
 	
 }
