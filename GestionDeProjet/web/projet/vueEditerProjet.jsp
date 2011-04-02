@@ -15,8 +15,8 @@
         <title>Edition d'un projet</title>
     </head>
     <body>
-        <h1>Edition d'un projet</h1>
 		<c:set var="projet" value="${projet}"/>
+        <h1>Edition du projet ${projet.numero}</h1>
 		<form method="POST" action="../GestionProjetServlet?action=editerProjet&projet=${projet.id}">
 			<label for="numProjet">Num&eacute;ro du projet</label> : <input type="text" id="numProjet" name="numProjet" value="${projet.numero}" /><br />
 			Responsable :

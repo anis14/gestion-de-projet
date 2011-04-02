@@ -6,6 +6,7 @@
 package metier.dao;
 
 import java.util.List;
+import metier.entites.Etat;
 import metier.entites.Nature;
 import metier.entites.Projet;
 import metier.entites.Tache;
@@ -47,6 +48,34 @@ public class TacheDAO extends DAO {
 		Nature laNature = (Nature)em.createQuery(requete).getSingleResult();
 
 		return laNature;
+	}
+
+	public Tache recupererTacheParId(int idTache) {
+		String requete = "SELECT t FROM Tache t WHERE t.id = "+idTache;
+		Tache laTache = (Tache)em.createQuery(requete).getSingleResult();
+
+		return laTache;
+	}
+
+	public Tache editerTache(Tache uneTache) {
+		em.getTransaction().begin();
+		Tache laTache = em.find(Tache.class, uneTache.getId());
+			laTache.setChargeEffective(uneTache.getChargeEffective());
+			laTache.setChargePrevisionnelle(uneTache.getChargePrevisionnelle());
+			laTache.setConsomme(uneTache.getConsomme());
+			laTache.setDateDebut(uneTache.getDateDebut());
+			laTache.setDateFin(uneTache.getDateFin());
+			laTache.setDescriptif(uneTache.getDescriptif());
+			laTache.setEmploye(uneTache.getEmploye());
+			laTache.setEtatTache(uneTache.getEtatTache());
+			laTache.setNature(uneTache.getNature());
+			laTache.setProjet(uneTache.getProjet());
+			laTache.setRemarque(uneTache.getRemarque());
+		em.persist(laTache);
+		em.getTransaction().commit();
+		em.close();
+
+		return laTache;
 	}
 	
 }

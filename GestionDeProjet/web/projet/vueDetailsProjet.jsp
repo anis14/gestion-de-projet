@@ -54,7 +54,7 @@
 					<td>${t.etatTache.etat}</td>
 					<td>${t.descriptif}</td>
 					<td>${t.remarque}</td>
-					<td><a href="">Editer</a></td>
+					<td><a href="GestionProjetServlet?action=editerTacheVue&tache=${t.id}&projet=${projet.id}">Editer</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>

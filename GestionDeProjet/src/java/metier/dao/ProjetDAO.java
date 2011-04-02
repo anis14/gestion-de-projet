@@ -118,6 +118,7 @@ public class ProjetDAO extends DAO {
 			leProjet.setCommentaire(unProjet.getCommentaire());
 			leProjet.setEtatProj(unProjet.getEtatProj());
 			leProjet.setResponsable(unProjet.getResponsable());
+		em.persist(leProjet);
 		em.getTransaction().commit();
 		em.close();
 
