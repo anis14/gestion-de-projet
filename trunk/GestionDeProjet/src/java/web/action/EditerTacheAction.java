@@ -113,9 +113,11 @@ public class EditerTacheAction implements Action {
 
 			List<Tache> lesTaches = new TacheService().detailsTachesProjet(leProjet.getId());
 			Tache tache = new TacheService().editerTache(laTache);
-			lesTaches.add(tache);
-			request.setAttribute("taches", lesTaches);
-			request.setAttribute("projet", leProjet);
+
+			if (tache != null) {
+				request.setAttribute("taches", lesTaches);
+				request.setAttribute("projet", leProjet);
+			}
 
 			return "projet/vueDetailsProjet.jsp";
 		}
